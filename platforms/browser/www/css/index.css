@@ -1,0 +1,333 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+   /* text-transform:uppercase;*/
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+.demo-swiper .swiper-slide {
+    font-size: 25px;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    color: #000;
+  }
+  .demo-swiper .swiper-slide {
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    background: #fff;
+  }
+  .demo-swiper {
+    margin: 0px 0 35px;
+    font-size: 18px;
+    height: 120px;
+  }
+  .demo-swiper.demo-swiper-auto .swiper-slide {
+    width: 85%;
+  }
+  .demo-swiper.demo-swiper-auto .swiper-slide:nth-child(2n) {
+    width: 70%;
+  }
+  .demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
+    width: 30%;
+  }
+  
+.fondoazul{
+    background:#00ffff !important;
+    /*background:24CDC8!important;*/
+}
+.fondoamarillo{
+    background:yellow !important;
+    /*background:24CDC8!important;*/
+}
+.fondologo { 
+   background : url(../img/veterinapp-logo.png); /* fondo de color azul */
+           position: absolute;  /* position in the center of the screen*/
+            left:50%;
+    top:50%;
+    height:50px;
+    width:170px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-100px 0px 0px -80px;
+}
+
+    .logologin{
+        background : url(../img/veterinapp-logo-login1.png);
+       
+    margin: 20px 0px 40px 0px;
+    height:120px;
+    width:120px !important; 
+    /*background-size: auto;*/
+    background-position: center top;
+    }
+
+    .fondolunacy{
+       /* width: 414px;
+        height: 736px;*/
+        background: linear-gradient(135deg, #D1A015, #B4B454, #A0C17F, #78E0DD, #24CDC8);
+    }
+
+    .rectangulo{
+ margin: 20px 0px 0px 10%;
+    width: 80%;
+  height: 50px;
+  border-radius: 34px;
+  background: #e8f0f9;
+  
+    }
+
+    .letralogin{
+        font-family:'Segoe UI' !important;
+        font-size:20px !important;
+  font-weight:400 !important;
+  line-height:32px !important;
+  color:gray;
+
+    }
+
+    .rectanguloamarillo{
+        width: 40%;
+  height: 40px;
+  border-radius: 27px;
+        margin:30px 0px 0px 30%;
+        background:yellow;
+        color: black;
+        padding:5px;
+    }
+    .rectanguloamarillo2{
+        width: 60%;
+  height: 40px;
+  border-radius: 27px;
+        margin:20px 0px 0px 20%;
+        background:yellow;
+        color: black;
+        padding:5px;
+    }
+    .rectanguloazul{
+        width: 50%;
+        height: 40px;
+        border-radius: 27px;
+        margin:10px 0px 0px 25%;
+        background:#00ffff;
+        font-size:12px;
+        color: black;
+        padding:5px;
+        border-color: black !important;
+    }
+
+    .fondonegro{
+        color:black;
+    }
+
+    .divperfil{
+      /*  width: 50%;*/
+        height: 100px;
+    }
+
+    .imgperfil{
+    background-image: url('../img/logo2.png');
+    background-size: contain;
+    background-repeat:no-repeat ;
+    background-position: center top;
+    }
+
+    .rectangulobuscar{
+        border-radius: 20px !important;
+        background-color:white !important; /*#dbd7d7*/
+        font-size:18px !important;
+        color:black !important;
+        
+    }
+
+    .centro-titulo{
+        text-align: center;
+        font-family:'Segoe UI' !important;
+        font-size:20px !important;
+    }
+
+.letra16{
+    text-align: center;
+    font-family:'Segoe UI' !important;
+    font-size:16px !important;
+}
+.radionegro{
+    --f7-radio-size: 32px;
+    --f7-radio-border-width: 2px;
+    --f7-radio-inactive-color: #c7c7cc;
+        background:white;
+        border-radius: 20px !important;
+}
+
+.backblack{
+    color:black;
+
+}
+
+/* ---------------------cartas promociones-------------------------*/
+
+.demo-card-header-pic .card-header {
+    height: 40vw;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+  }
+  .demo-card-header-pic .card-content-padding .date{
+    color: #8e8e93;
+  }
+
+  .fondoblack{
+      background-color:black;
+  }
+
+  .nombrecard{
+      /*opacity:0.8;*/
+      font-size:15px;
+      text-align:left;
+      font-family:Arial, Helvetica, sans-serif;
+    color:black;
+  }
+
+  .mapa{
+      width:100%;
+    height: 200px;
+
+  }
+
+  .red{
+      color:red;
+  }
+
+  .blanco{
+    color:white;
+}
+
+ .gris{
+    color:gray;
+}
+
+.letraperfil{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:14px;
+    color:gray;
+}
+
+.rectangulogris{
+    width: 70%;
+height: 30px;
+border-radius: 27px;
+    margin:10px 0px 0px 15%;
+    background:yellow;
+    color: blue;
+    padding:1px;
+}

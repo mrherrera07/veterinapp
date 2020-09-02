@@ -1,0 +1,162 @@
+<div class="page" data-name="home">
+    
+    <!-- Static Navbar -->
+    <div class="navbar fondoazul" style="z-index:90;">
+     <div class="navbar-inner sliding"> 
+          <div  style="width:20%;"> 
+            <a  class="button button-small panel-toggle display-flex " data-panel=".panel-left">
+              <i class="f7-icons fondonegro">bars</i>          
+            </a>
+           </div>
+          <div  style="width:78%;">
+           <form class="searchbar fondoazul" style="height:90%;">
+         
+                <input  class="rectangulobuscar" type="search" placeholder="Busca un veterinario" id=buscar_h>
+                <i class="searchbar-icon"></i>
+                <span class="input-clear-button"></span>
+            
+              <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+          
+          </form>
+          </div> 
+      </div> 
+    </div> 
+
+    <div class="toolbar tabbar tabbar-labels toolbar-bottom fondoazul">
+      <div class="toolbar-inner">
+        <a href="/ubicacion/" class="tab-link ">
+          <i class="icon f7-icons fondonegro">map_pin_ellipse</i>
+          <span class="tabbar-label fondonegro">+Cercano</span>
+        </a>
+        <a href="/consejos/" class="tab-link">
+          <i class="icon f7-icons fondonegro">question_diamond_fill</i>
+          <span class="tabbar-label fondonegro">Consejos</span>
+        </a>
+        <a href="/promociones/" class="tab-link">
+          <i class="icon f7-icons fondonegro" >percent</i>
+          <span class="tabbar-label fondonegro">Promociones</span>
+        </a>
+      </div>
+    </div>  
+
+    
+    <div class="panel panel-left panel-reveal panel-resizable panel-init">
+      <div class="block">
+        <h1  class="letralogin" style="text-align: center;">Perfil</h1>
+        <!--Imagen de perfil-->
+        <div class="row" id="nombre_panel">
+       <!-- <div class=" col-50 divperfil imgperfil"></div>
+        <div class="col-50 item-title letralogin" style="margin-top:20%;"></div> -->
+      </div>
+        <!--Lista de panel-->
+        <div class="list letraperfil">
+          <ul>
+            <li>
+              <a href="/perfil-paciente/" class="item-link item-content panel-close">
+                <div class="item-media"><i class="f7-icons"></i></div>
+                <div class="item-inner">
+                  <div class="item-title">Editar perfil</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/favoritos_doctores/"  class="item-link item-content panel-close">
+                <div class="item-media"><i class="f7-icons"></i></div>
+                <div class="item-inner">
+                  <div class="item-title">Favoritos doctores</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <li>
+                <a href="/promociones_favoritos/" class="item-link item-content panel-close">
+                  <div class="item-media"><i class="f7-icons"></i></div>
+                  <div class="item-inner">
+                    <div class="item-title">Favoritos promociones</div>
+                  </div>
+                </a>
+              </li>
+              <a href="#" class="item-link item-content">
+                <div class="item-media"><i class="f7-icons"></i></div>
+                <div class="item-inner">
+                  <div class="item-title">Formas de pago</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/contacto/" class="item-link item-content">
+                <div class="item-media"><i class="f7-icons"></i></div>
+                <div class="item-inner">
+                  <div class="item-title">Contacto</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="item-link item-content">
+                <div class="item-media"><i class="f7-icons"></i></div>
+                <div class="item-inner">
+                  <div class="item-title">Términos y condiciones</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <p><button class="panel-close button rectangulogris" href="/login/" onclick="CerrarSesion()">Cerrar sesion</button></p>
+      </div>
+     </div>
+<!--Logo y buscar-->
+<div class="page-content">
+ 
+<div data-pagination='{"el": ".swiper-pagination"}' data-space-between="50" class="swiper-container swiper-init demo-swiper">
+  <div class="swiper-pagination"></div>
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+  </div>
+  </div>
+<!--
+  <div class="card card-expandable" style="height:150px;">
+    <div class="card-content">
+      <div class="bg-color-yellow fondoazul" style="height:50px">
+        <div class="card-header text-color-black display-block">  
+          <small class="nombrecard">Dr.Martin Raymundo Herrera Medina</small>
+        </div>
+        <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px">
+          <i class="icon f7-icons">multiply_circle_fill</i>
+        </a>
+      </div>
+      <div class="card-content-padding">
+        <div class="row">
+          <div class="col-33"><img src="https://cdn.framework7.io/placeholder/fashion-88x88-4.jpg" width="90%" height="70px"/></div>
+          <div class="col-66">
+            <small style="font-size:14px">200$ Consulta - 250$ Domicilio</small>
+            <p><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  4.5/200 </p>
+          </div>
+        </div>
+         <div class="row">
+           <div class="col-75" style="color:gray"><p>Cédula profesional: 12345678</p></div>
+           <div class="col-25"><i class="f7-icons" onclick="favorito_doc()">heart</i></div>
+        </div>
+            <p style="margin-top:-10px;font-style: italic;">Especialidad en cirugía canina</p>
+            <p style="margin-top:-10px;">Teléfono:</p>
+            <p style="margin-top:-10px;">Ubicacion: Calle Cerro Azul #4456 Col. La paz</p>
+            <div class="mapa">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15083.92976224796!2d-98.21041557084209!3d19.06450963701703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5e3a730ab8d50cf5!2sConsultorio%20M%C3%A9dico!5e0!3m2!1ses-419!2smx!4v1597987965591!5m2!1ses-419!2smx" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <button class="col button button-small button-round  rectanguloamarillo2">Ordenar consulta</button>
+          </div>
+      </div>
+    -->
+    <div id="doctores"></div>
+    </div>
+
+  
+
+
+</div>
+
+     
+    
+<!--</div>-->
