@@ -4,6 +4,7 @@ var app = {
 };
 
 // variable global
+var _radio_btn="";
 
 var app7 = new Framework7({
   // App root element
@@ -87,7 +88,6 @@ document.getElementById("watchPosition").addEventListener("click", watchPosition
 
 var mainView = app7.views.create('.view-main');
 
-var promedio=0;
 
 function showSplashScreen(){
   setTimeout(function(){  InitApp();  }, 1000);
@@ -128,7 +128,14 @@ var searchbar = app7.searchbar.create({
 // ---------------dialogo de confirmacion-modalidad---------------------------------
 function confirm_modalidad(){
 app7.dialog.confirm('¿Estas seguro de la modalidad?', function () {
-  mainView.router.navigate('/login/',{animate:true});
+  // mainView.router.navigate('/login/',{animate:true});
+  //alert(_radio_btn);
+  if (_radio_btn=="Vet"){
+    mainView.router.navigate('/registro-veterinario/',{animate:true});
+  }
+  else{
+    mainView.router.navigate('/registro-paciente/',{animate:true});
+  }
 });
 }
 // ---------------dialogo de confirmacion-registro---------------------------------
@@ -153,7 +160,8 @@ function Favorito(id){
  // app7.preloader.show();
 app7.request(
   {
-    url:'http://localhost/veterinapp/api/favoritos_promo.php', //primer campo es para nombre de variable en API y el segundo el que puse arriba como var
+    //url:'http://localhost/veterinapp/api/favoritos_promo.php', //primer campo es para nombre de variable en API y el segundo el que puse arriba como var
+    url:'https://veterinapp.com/veterinapp/api/favoritos_promo.php',
     data:{usuario:usuario,promocion:promocion},
     method:'POST',
     crossDomain: true,
@@ -205,7 +213,8 @@ var password2 = $$('#password2_r').val();
 app7.preloader.show();
 app7.request(
   {
-    url:'http://localhost/veterinapp/api/users.php', //primer campo es para nombre de variable en API y el segundo el que puse arriba como var
+    url:'https://veterinapp.com/veterinapp/api/users.php',
+    //url:'http://localhost/veterinapp/api/users.php', //primer campo es para nombre de variable en API y el segundo el que puse arriba como var
     data:{usuario:usuario,password:password,nombre:nombre,apellidos:apellidos,telefono:telefono,correo:correo,genero:genero,nacimiento:nacimiento,pais:pais,estado:estado,ciudad:ciudad,direccion:direccion,password2:password2},
     method:'POST',
     crossDomain: true,
@@ -260,7 +269,8 @@ var imagen = $$('#cedula_v').val();
 app7.preloader.show();
 app7.request(
   {
-    url:'http://localhost/veterinapp/api/users_v.php', //primer campo es para nombre de variable en API y el segundo el que puse arriba como var
+    url:'https://veterinapp.com/veterinapp/api/users_v.php',
+   // url:'http://localhost/veterinapp/api/users_v.php', //primer campo es para nombre de variable en API y el segundo el que puse arriba como var
     data:{usuario:usuario,password:password,nombre:nombre,apellidos:apellidos,telefono:telefono,correo:correo,genero:genero,nacimiento:nacimiento,pais:pais,estado:estado,ciudad:ciudad,direccion:direccion,password2:password2,consultorio:consultorio,cedula:cedula,imagen:imagen},
     method:'POST',
     crossDomain: true,
@@ -359,6 +369,12 @@ $$(document).on('page:init', '.page[data-name="promociones_favoritos"]', functio
 $$(document).on('page:init', '.page[data-name="perfil-paciente"]', function (e) {
   getDatosPerfil();
 });
+$$(document).on('page:init', '.page[data-name="pre-registro"]', function (e) {
+  $$('input[type="radio"]').on('change click', function(ev){
+    //console.log($$(ev.currentTarget).val());
+    _radio_btn=$$(ev.currentTarget).val()
+ });
+});
 
 //-------------------------
 
@@ -370,7 +386,8 @@ $$(document).on('page:init', '.page[data-name="perfil-paciente"]', function (e) 
 
 
   app7.request({
-    url: 'http://localhost/veterinapp/api/slider.php',
+    //url: 'http://localhost/veterinapp/api/slider.php',
+    url:'https://veterinapp.com/veterinapp/api/slider.php',
     data:{},
     method:'POST',
     crossDomain: true,
@@ -413,7 +430,8 @@ function getPromocion(){
 
 
   app7.request({
-    url: 'http://localhost/veterinapp/api/promociones.php',
+    //url: 'http://localhost/veterinapp/api/promociones.php',
+    url:'https://veterinapp.com/veterinapp/api/promociones.php',
     data:{},
     method:'POST',
     crossDomain: true,
@@ -455,7 +473,8 @@ function getConsejos(){
 
 
   app7.request({
-    url: 'http://localhost/veterinapp/api/consejos.php',
+    //url: 'http://localhost/veterinapp/api/consejos.php',
+    url:'https://veterinapp.com/veterinapp/api/consejos.php',
     data:{},
     method:'POST',
     crossDomain: true,
@@ -475,7 +494,7 @@ function getConsejos(){
      
      $$('#consejos').append(consejo);
 
-     console.log(objson.data[x]);
+    // console.log(objson.data[x]);
       }
           
     },
@@ -494,7 +513,8 @@ function getDoctores(){
   var usuario =localStorage.getItem('usuario');
  var prom=0;
   app7.request({
-    url: 'http://localhost/veterinapp/api/infodoc.php',
+    //url: 'http://localhost/veterinapp/api/infodoc.php',
+    url:'https://veterinapp.com/veterinapp/api/infodoc.php',
     data:{},
     method:'POST',
     crossDomain: true,
@@ -512,13 +532,13 @@ function getDoctores(){
 $$('#nombre_panel').append(nombre);*/
       
       for(x in objson.data){
-     obtener_puntaje(objson.data[x].id);
-     
-       // console.log(objson.data[x].nombre)
-     doctor ='<div class="card card-expandable" style="height:150px;"><div class="card-content"><div class="bg-color-yellow fondoazul" style="height:50px"><div class="card-header text-color-black display-block"><small class="nombrecard">'+objson.data[x].nombre+' '+objson.data[x].apellidos+'</small></div><a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px"><i class="icon f7-icons">multiply_circle_fill</i></a></div><div class="card-content-padding"><div class="row"><div class="col-33"><img src="'+objson.data[x].imagen+'" width="auto" height="70px"/></div><div class="col-66"><small style="font-size:14px">'+objson.data[x].precio+'$ Consulta - '+objson.data[x].precio_dom+'$ Domicilio</small><p><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+objson.data[x].promedio+'/'+objson.data[x].puntuados+' </p></div></div><div class="row"><div class="col-75" style="color:gray"><p>Cédula profesional:'+objson.data[x].cedula+'</p></div><div class="col-25"><i class="f7-icons gris" id="fav-'+objson.data[x].id+'" onClick="Favorito_doc('+objson.data[x].id+')">heart_fill</i></div></div><p style="margin-top:-10px;font-style: italic;">'+objson.data[x].descripcion+'</p><p style="margin-top:-10px;">Teléfono:'+objson.data[x].telefono+'</p><p style="margin-top:-10px;">Ubicacion:'+objson.data[x].consultorio+'</p><div class="mapa"><iframe src="'+objson.data[x].mapa+'" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div><button class="col button button-small button-round  rectanguloamarillo2">Ordenar consulta</button></div></div></div>'
-     //alert(objson.data[x].usuario); 
-     
+     //obtener_puntaje(objson.data[x].id);
+      
+     //doctor ='<div class="card card-expandable" style="height:150px;"><div class="card-content"><div class="bg-color-yellow fondoazul" style="height:50px"><div class="card-header text-color-black display-block"><small class="nombrecard">'+objson.data[x].nombre+' '+objson.data[x].apellidos+'</small></div><a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px"><i class="icon f7-icons">multiply_circle_fill</i></a></div><div class="card-content-padding"><div class="row"><div class="col-33"><img src="'+objson.data[x].imagen+'" width="auto" height="70px"/></div><div class="col-66"><small style="font-size:14px">'+objson.data[x].precio+'$ Consulta - '+objson.data[x].precio_dom+'$ Domicilio</small><p><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+objson.data[x].promedio+'/'+objson.data[x].puntuados+' </p></div></div><div class="row"><div class="col-75" style="color:gray"><p>Cédula profesional:'+objson.data[x].cedula+'</p></div><div class="col-25"><i class="f7-icons gris" id="fav-'+objson.data[x].id+'" onClick="Favorito_doc('+objson.data[x].id+')">heart_fill</i></div></div><p style="margin-top:-10px;font-style: italic;">'+objson.data[x].descripcion+'</p><p style="margin-top:-10px;">Teléfono:'+objson.data[x].telefono+'</p><p style="margin-top:-10px;">Ubicacion:'+objson.data[x].consultorio+'</p><div class="mapa"><iframe src="'+objson.data[x].mapa+'" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div><button class="col button button-small button-round  rectanguloamarillo2">Ordenar consulta</button></div></div></div>'
+    // calif='<i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+objson.data[x].promedio+'/'+objson.data[x].puntuados+'';
 
+     doctor ='<div class="card card-expandable" style="height:150px;"><div class="card-content"><div class="bg-color-yellow fondoazul" style="height:50px"><div class="card-header text-color-black display-block"><small class="nombrecard">'+objson.data[x].nombre+' '+objson.data[x].apellidos+'</small></div><a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px"><i class="icon f7-icons">multiply_circle_fill</i></a></div><div class="card-content-padding"><div class="row"><div class="col-33"><img src="'+objson.data[x].imagen+'" width="auto" height="70px"/></div><div class="col-66"><small style="font-size:14px">'+objson.data[x].precio+'$ Consulta - '+objson.data[x].precio_dom+'$ Domicilio</small><p id="calificacion-'+objson.data[x].id+'"></p></div></div><div class="row"><div class="col-75" style="color:gray"><p>Cédula profesional:'+objson.data[x].cedula+'</p></div><div class="col-25"><i class="f7-icons gris" id="fav-'+objson.data[x].id+'" onClick="Favorito_doc('+objson.data[x].id+')">heart_fill</i></div></div><p style="margin-top:-10px;font-style: italic;">'+objson.data[x].descripcion+'</p><p style="margin-top:-10px;">Teléfono:'+objson.data[x].telefono+'</p><p style="margin-top:-10px;">Ubicacion:'+objson.data[x].consultorio+'</p><div class="mapa"><iframe src="'+objson.data[x].mapa+'" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div><button class="col button button-small button-round  rectanguloamarillo2">Ordenar consulta</button></div></div></div>'
+     obtener_puntaje(objson.data[x].id);
      $$('#doctores').append(doctor);
      
       }
@@ -545,7 +565,8 @@ function Favorito_doc(id){
  // app7.preloader.show();
 app7.request(
   {
-    url:'http://localhost/veterinapp/api/favoritos_doctores.php', //primer campo es para nombre de variable en API y el segundo el que puse arriba como var
+    //url:'http://localhost/veterinapp/api/favoritos_doctores.php', //primer campo es para nombre de variable en API y el segundo el que puse arriba como var
+    url:'https://veterinapp.com/veterinapp/api/favoritos_doctores.php',
     data:{usuario:usuario,doctor:doctor},
     method:'POST',
     crossDomain: true,
@@ -606,7 +627,8 @@ function getDoctores_Favoritos(){
 
 //prueba de construir doctores
   app7.request({
-    url: 'http://localhost/veterinapp/api/infodoc_favoritos2.php',
+    //url: 'http://localhost/veterinapp/api/infodoc_favoritos2.php',
+    url:'https://veterinapp.com/veterinapp/api/infodoc_favoritos2.php',
     data:{id:doctor_fav},
     method:'POST',
     crossDomain: true,
@@ -660,7 +682,8 @@ function getPromociones_Favoritos(){
   var id="";
 
   app7.request({
-    url: 'http://localhost/veterinapp/api/promociones_favoritos.php',
+    //url: 'http://localhost/veterinapp/api/promociones_favoritos.php',
+    url:'https://veterinapp.com/veterinapp/api/promociones_favoritos.php',
     data:{usuario:usuario},
     method:'POST',
     crossDomain: true,
@@ -678,7 +701,8 @@ function getPromociones_Favoritos(){
      promocion_fav = objson.data[x].promocion;
      //construir la promo
      app7.request({
-      url: 'http://localhost/veterinapp/api/promociones_favoritos2.php',
+      //url: 'http://localhost/veterinapp/api/promociones_favoritos2.php',
+      url:'https://veterinapp.com/veterinapp/api/promociones_favoritos2.php',
       data:{id:promocion_fav},
       method:'POST',
       crossDomain: true,
@@ -727,7 +751,8 @@ function getFotoyperfil(){
   var usuario =localStorage.getItem('usuario');
 
 app7.request({
-  url: 'http://localhost/veterinapp/api/fotousuario.php',
+  //url: 'http://localhost/veterinapp/api/fotousuario.php',
+  url:'https://veterinapp.com/veterinapp/api/fotousuario.php',
   data:{usuario:usuario},
   method:'POST',
   crossDomain: true,
@@ -761,7 +786,8 @@ function getDatosPerfil(){
   var usuario =localStorage.getItem('usuario');
 
 app7.request({
-  url: 'http://localhost/veterinapp/api/datos_perfil.php',
+  //url: 'http://localhost/veterinapp/api/datos_perfil.php',
+  url:'https://veterinapp.com/veterinapp/api/datos_perfil.php',
   data:{usuario:usuario},
   method:'POST',
   crossDomain: true,
@@ -807,7 +833,8 @@ function Actualizar_perfil(){
 if (password==password2){
   app7.preloader.show();
   app7.request({
-    url: 'http://localhost/veterinapp/api/users_perfil.php',
+    //url: 'http://localhost/veterinapp/api/users_perfil.php',
+    url:'https://veterinapp.com/veterinapp/api/users_perfil.php',
     data:{usuario:usuario,telefono:telefono,direccion:direccion,password:password,password2:password2},
     method:'POST',
     crossDomain: true,
@@ -837,9 +864,11 @@ error_password();
   var doctor_id=doctor;
   var puntuados=0;
   var puntaje=0;
-  
+  var calif="";
+var promedio=0;
   app7.request({
-    url: 'http://localhost/veterinapp/api/obtener_puntaje.php',
+    //url: 'http://localhost/veterinapp/api/obtener_puntaje.php',
+    url:'https://veterinapp.com/veterinapp/api/obtener_puntaje.php',
     data:{doctor_id:doctor_id},
     method:'POST',
     crossDomain: true,
@@ -853,44 +882,69 @@ error_password();
 
         puntuados=objson1.data[x].puntuados;
         puntaje=objson1.data[x].puntaje;
-        promedio=puntaje/puntuados;
-        //promedio=0.3;
+        promedio1=puntaje*100/puntuados;
+        promedio2= Math.round(promedio1);
+        promedio=promedio2/100;
+        
+        //promedio=5;
         //alert(promedio);
-        /*
+        
         if (promedio >= 0 && promedio <0.49){
-          alert("cero estrella");
+          //alert("cero estrella");
+          calif='<i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+          $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 0.5 && promedio <0.99){
-          alert(" media estrella");
+          //alert(" media estrella");
+          calif='<i class="icon f7-icons stars">star_lefthalf_fill</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+          $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 1 && promedio <1.49){
-          alert(" 1 estrella");
+          //alert(" 1 estrella");
+          calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+          $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 1.5 && promedio <1.99){
-          alert(" 1 y media estrella");
+          //alert(" 1 y media estrella");
+          calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons stars">star_lefthalf_fill</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+          $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 2 && promedio <2.49){
-          alert(" 2 estrella");
+          //alert(" 2 estrella");
+          calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+          $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 2.5 && promedio <2.99){
-          alert(" 2 y media estrella");
+          //alert(" 2 y media estrella");
+          calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_lefthalf_fill</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+          $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 3 && promedio <3.49){
-          alert(" 3 estrella");
+         // alert(" 3 estrella");
+         calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons">star</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+         $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 3.5 && promedio <3.99){
-          alert(" 3 y media estrella");
+         // alert(" 3 y media estrella");
+         calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_lefthalf_fill</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+         $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 4 && promedio <4.49){
-          alert(" 4 estrella");
+          //alert(" 4 estrella");
+          calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons">star</i>  '+promedio+'/'+puntuados+'';
+         $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 4.5 && promedio <4.99){
-          alert(" 4 y media estrella");
+          //alert(" 4 y media estrella");
+          calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_lefthalf_fill</i>  '+promedio+'/'+puntuados+'';
+         $$('#calificacion-'+doctor_id).append(calif);
         }
         else if (promedio >= 5){
-          alert(" 5 estrella");
+          //alert(" 5 estrella");
+          calif='<i class="icon f7-icons stars stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i><i class="icon f7-icons stars">star_fill</i>  '+promedio+'/'+puntuados+'';
+          $$('#calificacion-'+doctor_id).append(calif);
         }
-        */
+        
       }
           
     },
@@ -952,3 +1006,4 @@ function watchPosition() {
      alert('code: '    + error.code    + '\n' +'message: ' + error.message + '\n');
   }
 }
+
