@@ -98,7 +98,7 @@ function InitApp(){
     mainView.router.navigate('/home/',{animate:true});
     //datos_perfil();
   }else{
-  mainView.router.navigate('/login/',{animate:true});
+  mainView.router.navigate('/home/',{animate:true});
 }
 }
 
